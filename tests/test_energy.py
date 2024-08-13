@@ -1,9 +1,13 @@
 import unittest
+from datetime import datetime
+
 from app import create_app, db
 from app.models.energy_models import EnergyData
-from app.analysis.energy_analysis import total_energy_consumption,
-average_daily_consumption, peak_usage_times
-from datetime import datetime
+from app.analysis.energy_analysis import (
+    total_energy_consumption,
+    average_daily_consumption,
+    peak_usage_times,
+)
 
 
 class EnergyManagementTestCase(unittest.TestCase):
