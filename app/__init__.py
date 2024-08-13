@@ -1,7 +1,11 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
 from app.config import Config
-from app.models.energy_models import db
-from app.views.energy_view import bp
+
+
+db = SQLAlchemy()
+migrate = Migrate()
 
 
 def create_app():
@@ -9,6 +13,9 @@ def create_app():
     app.config.from_object(Config)
 
     db.init_app(app)
-    app.register_blueprint(bp, url_prefix='/api')
+    migrate.init_app(app, db)
+
+    from app.controllers import energy_controller
+    app.register_blueprint(energy_controller.bp)
 
     return app

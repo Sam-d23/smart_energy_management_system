@@ -1,1 +1,1 @@
-
+from .energy_controller import calculate_total_energy_consumed
